@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <script>
+        let startTime;
+        let timerInterval;
+        let elapsedTime = 0;
+
+        function startTimer() {
+            startTime = Date.now() - elapsedTime;
+            timerInterval = setInterval(updateTimer, 1000);
+        }
+
+        function updateTimer() {
+            elapsedTime = Date.now() - startTime;
+            document.getElementById("timerDisplay").innerText = Math.floor(elapsedTime / 1000) + " 秒";
+        }
+
+        function stopTimer() {
+            clearInterval(timerInterval);
+        }
+    </script>
+</head>
+<body>
+    <div id="timerDisplay">0 秒</div>
+    <button onclick="startTimer()">开始计时</button>
+    <button onclick="stopTimer()">停止计时</button>
+</body>
+</html>
