@@ -8,10 +8,14 @@
         let startTime;
         let timerInterval;
         let elapsedTime = 0;
+        let running = false;
 
         function startTimer() {
-            startTime = Date.now() - elapsedTime;
-            timerInterval = setInterval(updateTimer, 1000);
+            if (!running) {
+                startTime = Date.now() - elapsedTime;
+                timerInterval = setInterval(updateTimer, 1000);
+                running = true;
+            }
         }
 
         function updateTimer() {
@@ -21,6 +25,13 @@
 
         function stopTimer() {
             clearInterval(timerInterval);
+            running = false;
+        }
+
+        function resetTimer() {
+            stopTimer();
+            elapsedTime = 0;
+            document.getElementById("timerDisplay").innerText = "0 秒";
         }
     </script>
 </head>
@@ -28,5 +39,6 @@
     <div id="timerDisplay">0 秒</div>
     <button onclick="startTimer()">开始计时</button>
     <button onclick="stopTimer()">停止计时</button>
+    <button onclick="resetTimer()">重置计时器</button>
 </body>
 </html>
